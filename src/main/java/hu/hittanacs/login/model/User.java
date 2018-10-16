@@ -26,8 +26,15 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
+    @Column(name = "email")
+    private String email;
+
     public void setPassword(String password) {
         this.password = EncryptUtil.getEncryptedString(password);
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

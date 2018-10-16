@@ -2,8 +2,12 @@ package hu.hittanacs.login.controller;
 
 import hu.hittanacs.login.service.UserServiceImpl;
 import hu.hittanacs.login.model.User;
+import hu.hittanacs.login.util.EmailCheck;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +25,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void updateUser(@RequestBody User user) {
-        userService.update(user);
+    public ResponseEntity<String> updateUser(@RequestBody User user) {
+
+        if (EmailCheck.validate(user.getEmail())) {
+                userService.update(user);
+                return new ResponseEntity<String>("Succes", HttpStatus.OK);
+        }else
+        {
+            return new ResponseEntity<String>("Wrong Email Address", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     @RequestMapping(value = "/remove/{id}", method = RequestMethod.DELETE)
@@ -31,7 +42,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public void uploadUser(@RequestBody User user){
-        userService.upload(user);
+    public ResponseEntity<String> uploadUser(@RequestBody User user){
+        if (EmailCheck.validate(user.getEmail())) {
+            userService.upload(user);
+            return new ResponseEntity<String>("Succes", HttpStatus.OK);
+        }else
+        {
+            return new ResponseEntity<String>("Wrong Email Address", HttpStatus.UNAUTHORIZED);
+        }
     }
 }

@@ -6,7 +6,7 @@
 	<groupId>hu.hittanacs</groupId>
 	<artifactId>login</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>login</name>
 	<description>login project for Spring Boot</description>
