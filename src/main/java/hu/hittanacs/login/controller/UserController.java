@@ -32,6 +32,6 @@ public class UserController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public void uploadUser(@RequestBody User user){
-        userService.update(user);
+        userService.upload(user);
     }
 }

@@ -1,5 +1,6 @@
 package hu.hittanacs.login.model;
 
+import hu.hittanacs.login.util.EncryptUtil;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,10 @@ public class User {
 
     @Column(name = "full_name")
     private String fullName;
+
+    public void setPassword(String password) {
+        this.password = EncryptUtil.getEncryptedString(password);
+    }
 
     @Override
     public String toString() {

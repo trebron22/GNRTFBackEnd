@@ -38,4 +38,10 @@ public class UserServiceImpl implements UserService{
         System.out.println(user);
         return userRepository.save(user);
     }
+
+    @Override
+    public User upload(User user) {
+        System.out.println();
+        return userRepository.save(user);
+    }
 }

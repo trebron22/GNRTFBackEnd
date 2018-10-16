@@ -10,5 +10,6 @@ public interface UserService {
     User getUser(Long id);
     void removeById(Long id);
     User update(User user);
+    User upload(User user);
 
 }
